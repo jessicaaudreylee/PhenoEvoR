@@ -534,14 +534,16 @@ barcode.timecourse<-function(NLdata, runnum){
   t1<-parsefactors.norm(df$barcode[1])[,c(1,3)] # make a base dataframe with relative abundance of each barcode
   if(dim(df)[1]>=1000){ # if dataframe has 1,000 rows or more,
     for (tick in seq(10,dim(df)[1],10)){ # take only every 10th timepoint
-      t1<-merge(t1, parsefactors.norm(df$barcode[tick])[,c(1,3)], by='s3', all=T)
+      t1<-suppressWarnings(merge(t1, parsefactors.norm(df$barcode[tick])[,c(1,3)],
+                                 by='s3', all=T)) # suppress warnings about duplicated column names
       w<-10
     }
     colnames(t1)<-c('barcode', 1, seq(10,dim(df)[1],10))
   }
   if(dim(df)[1]<=999){ # if there are 999 rows or fewer, use all of them
     for (tick in seq(2,dim(df)[1]-1,1)){
-      t1<-merge(t1, parsefactors.norm(df$barcode[tick])[,c(1,3)], by='s3', all=T)
+      t1<-suppressWarnings(merge(t1, parsefactors.norm(df$barcode[tick])[,c(1,3)],
+                                 by='s3', all=T)) # suppress warnings about duplicated column names
       w<-1
     }
     colnames(t1)<-c('barcode', 1, seq(2,dim(df)[1]-1,1))

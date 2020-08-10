@@ -9,6 +9,8 @@ vignette: >
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  fig.width=6, 
+  fig.height=4,
   collapse = TRUE,
   comment = "#>"
 )
@@ -75,10 +77,10 @@ To make downstream analyses easier, let's merge the functional diversity results
 PE.ends<-merge(PE.ends, dr.fundiv, by='run.number')
 rm(dr.fundiv)
 ```
-## Plotting results
+# Plotting results
 That's all the prep you need before you can begin visualizing your results!
 
-# Final-timepoint population means
+## Final-timepoint population means
 Because we ran a parameter sweep and would like to know how the values of two parameters, toxin.conc and env.noise, affect the final population that evolves, let's start with some heatmaps comparing population-level means of some important variables across parameter values.
 
 For all the heatmap functions, the arguments are:
@@ -140,7 +142,7 @@ See ggplot2 documentation for adding other features. You can pretty much add any
 
 It's very important to remember that these are population averages; our plots can't say anything about the diversity present in the population. Closer analysis is necessary to figure out what's really going on. In addition, we seem to have recognized some trends, but there is also noise in those trends, likely due to the stochasticity that's inherent to evolution. It would be worthwhile doing replicates of these experiments, and/or testing at intermediate values across our parameter gradients. If you do recognize a trend, you can easily use the data from the PE.ends dataframe for simple linear modeling, or any other form of statistical analysis you prefer. Finally, it should be acknowledged that these snapshots capture only a single timepoint, yet these populations are constantly in flux. In the long run it would be useful to develop some methods to examine the dynamic steady state of the population.
 
-# Final-timepoint population distributions
+## Final-timepoint population distributions
 
 The whole point of our project is that just calculating the average value of a diverse population can't tell you the whole story! So, of course, you'll want to plot a histogram of degrade rate at the final timepoint for each experiment:
 ```{r}
@@ -170,7 +172,7 @@ plot(vario.4)
 For the moment, that's the extent of our capacity for spatial analysis. However, you can build on this by comparing variograms across different timepoints or parameters.
 If you want to get more deeply into spatial analysis, we urge you to look at the code for degraderate.snapshot() and degraderate.variogram() as a guide for how to coerce Pheno-Evo data into the right format for use with the sp and Gstat packages; you are welcome to build from there.
 
-# Plotting timecourse data
+## Plotting timecourse data
 
 It can be very informative to see how a population has been behaving over time, though impractical to look at all the populations at once, if you've done an experiment that involves many of them. Now that you've looked at summary statistics, there may be a few populations you're particularly interested in. (We'll use pop 4 just for an example.)
 The following code allows you to look at how particular properties of your population have changed over time, for a single experiment. All plotting functions require as arguments:

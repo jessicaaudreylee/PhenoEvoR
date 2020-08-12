@@ -22,7 +22,7 @@ library(PhenoEvoR)
 # Analyzing Pheno-Evo data
 You've run an exeriment using the Pheno-Evo model; you conducted a parameter sweep with BehaviorSpace and exported it as a table. Now what do you do with that table? Here's a introduction to how PhenoEvoR can help you understand what happened in your model.
 
-To get the full advantage of this tutorial, please download the sample data from our website: PhenoEvo_Example_Experiment.csv. This is a relatively small dataset, so using it should be pretty quick. It was generated from an experiment in which we tested 3 values each of toxin.conc and env.noise, and ran for only 1, timesteps.
+To get the full advantage of this tutorial, please download the sample data, "PhenoEvo_Example_Experiment.csv," from our website at https://everydaymicrobe.com/pheno-evo. This is a relatively small dataset, so using it should be pretty quick. It was generated from an experiment in which we tested 3 values each of toxin.conc and env.noise, and ran for only 1, timesteps.
 
 ## Import and basic processing
 Because Pheno-Evo datasets are usually pretty large, we recommend using the fread() function from the data.table package, which deals efficiently with big files. Of course, change the path name below to match the location of PhenoEvo_Example_Experiment.csv on your computer.
